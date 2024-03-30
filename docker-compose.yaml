@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres
+    container_name: kris-strapi-postgres
+    environment:
+      - POSTGRES_USER=strapi
+      - POSTGRES_PASSWORD=strapi
+      - POSTGRES_DB=strapi
+    ports:
+      - 5440:5432
+    volumes:
+      - kris-strapi:/var/lib/postgresql/data
+    
+
+volumes:
+  kris-strapi:
