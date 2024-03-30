@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_page_program_and_tools",
+  "info": {
+    "displayName": "Programs and Tools",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "programs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::program.program"
+    },
+    "tools": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tool.tool"
+    }
+  }
+}

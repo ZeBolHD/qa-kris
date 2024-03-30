@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_home_page_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "television",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "offers": {
+      "type": "richtext"
+    }
+  }
+}
