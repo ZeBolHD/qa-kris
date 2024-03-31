@@ -794,10 +794,10 @@ export interface ApiServiceService extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
-    price: Attribute.String;
+    name: Attribute.String & Attribute.Required;
+    price: Attribute.String & Attribute.Required;
     time: Attribute.String;
-    description: Attribute.RichText;
+    description: Attribute.RichText & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
