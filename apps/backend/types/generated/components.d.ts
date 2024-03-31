@@ -22,7 +22,11 @@ export interface HomePageProgramAndTools extends Schema.Component {
     description: "";
   };
   attributes: {
-    programs: Attribute.Relation<"home-page.program-and-tools", "oneToMany", "api::program.program">;
+    programs: Attribute.Relation<
+      "home-page.program-and-tools",
+      "oneToMany",
+      "api::program.program"
+    >;
     tools: Attribute.Relation<"home-page.program-and-tools", "oneToMany", "api::tool.tool">;
   };
 }

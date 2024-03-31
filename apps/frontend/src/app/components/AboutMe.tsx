@@ -8,8 +8,8 @@ const AboutMe = async () => {
   const { about_me } = data.homePage?.data?.attributes!;
 
   return (
-    <section className="container mx-auto mt-[240px]">
-      <div className="w-full flex gap-[150px] items-center">
+    <section className="mt-[240px]">
+      <div className="container mx-auto w-full flex gap-[150px] items-center">
         <Image className="w-[85px] h-[85px]" src={"/star.svg"} alt="star" width={100} height={100} />
 
         <div>
