@@ -13,7 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query GET_HOME_PAGE {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.Get_Home_PageDocument,
+    "\n  query GET_HOME_PAGE_ABOUT {\n    homePage {\n      data {\n        attributes {\n          about_me\n        }\n      }\n    }\n  }\n": types.Get_Home_Page_AboutDocument,
+    "\n  query GET_HOME_PAGE_HERO {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.Get_Home_Page_HeroDocument,
 };
 
 /**
@@ -33,7 +34,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GET_HOME_PAGE {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GET_HOME_PAGE {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query GET_HOME_PAGE_ABOUT {\n    homePage {\n      data {\n        attributes {\n          about_me\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GET_HOME_PAGE_ABOUT {\n    homePage {\n      data {\n        attributes {\n          about_me\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GET_HOME_PAGE_HERO {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GET_HOME_PAGE_HERO {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

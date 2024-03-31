@@ -1,8 +1,8 @@
 import { gql } from "@/__generated__/gql";
-import apolloClient from "./apollo-client";
+import apolloClient from "../apollo-client";
 
 const GET_HOME_PAGE_HERO = gql(/* GraphQL */ `
-  query GET_HOME_PAGE {
+  query GET_HOME_PAGE_HERO {
     homePage {
       data {
         attributes {
