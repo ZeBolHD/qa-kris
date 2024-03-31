@@ -8,12 +8,13 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "avatar": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -22,7 +23,8 @@
       ]
     },
     "offers": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     }
   }
 }

@@ -1,13 +1,19 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GRAPHQL_URL } from "./consts";
 
-const createApolloClient = () => {
-  return new ApolloClient({
-    uri: GRAPHQL_URL,
-    cache: new InMemoryCache()
-  });
-};
-
-const apolloClient = createApolloClient();
+const apolloClient = new ApolloClient({
+  uri: GRAPHQL_URL,
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "ignore"
+    },
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all"
+    }
+  }
+});
 
 export default apolloClient;

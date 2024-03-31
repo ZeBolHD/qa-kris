@@ -8,9 +8,9 @@ export interface HomePageHero extends Schema.Component {
     description: "";
   };
   attributes: {
-    title: Attribute.String;
-    avatar: Attribute.Media;
-    offers: Attribute.RichText;
+    title: Attribute.String & Attribute.Required;
+    avatar: Attribute.Media & Attribute.Required;
+    offers: Attribute.RichText & Attribute.Required;
   };
 }
 

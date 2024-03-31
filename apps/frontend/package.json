@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "@apollo/client": "3.9.0-rc.1",
+    "@parcel/watcher": "^2.4.1",
     "clsx": "^2.1.0",
     "graphql": "^16.8.1",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^9.0.1",
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
