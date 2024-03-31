@@ -704,6 +704,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       "api::question.question"
     >;
     about_me: Attribute.RichText;
+    requisites_number: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

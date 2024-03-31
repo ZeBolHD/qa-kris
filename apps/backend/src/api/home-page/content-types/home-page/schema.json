@@ -34,6 +34,9 @@
     },
     "about_me": {
       "type": "richtext"
+    },
+    "requisites_number": {
+      "type": "string"
     }
   }
 }
