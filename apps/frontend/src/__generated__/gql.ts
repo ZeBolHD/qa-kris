@@ -17,6 +17,7 @@ const documents = {
     "\n  query GET_HOME_PAGE_HERO {\n    homePage {\n      data {\n        attributes {\n          hero {\n            title\n            offers\n            avatar {\n              data {\n                attributes {\n                  url\n                  width\n                  height\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.Get_Home_Page_HeroDocument,
     "\n  query GET_HOME_PAGE_SERVICES {\n    homePage {\n      data {\n        attributes {\n          services {\n            data {\n              attributes {\n                name\n                price\n                time\n\n                description\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.Get_Home_Page_ServicesDocument,
     "\n  query GET_HOME_PAGE_PROGRAMS_AND_TOOLS {\n    homePage {\n      data {\n        attributes {\n          programs_and_tools {\n            programs {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n\n            tools {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.Get_Home_Page_Programs_And_ToolsDocument,
+    "\n  mutation SEND_APPLICATION($name: String!, $telegram: String!, $service: String!) {\n    createApplication(data: { name: $name, telegram: $telegram, service: $service }) {\n      data {\n        id\n      }\n    }\n  }\n": types.Send_ApplicationDocument,
 };
 
 /**
@@ -49,6 +50,10 @@ export function gql(source: "\n  query GET_HOME_PAGE_SERVICES {\n    homePage {\
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GET_HOME_PAGE_PROGRAMS_AND_TOOLS {\n    homePage {\n      data {\n        attributes {\n          programs_and_tools {\n            programs {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n\n            tools {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GET_HOME_PAGE_PROGRAMS_AND_TOOLS {\n    homePage {\n      data {\n        attributes {\n          programs_and_tools {\n            programs {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n\n            tools {\n              data {\n                attributes {\n                  name\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation SEND_APPLICATION($name: String!, $telegram: String!, $service: String!) {\n    createApplication(data: { name: $name, telegram: $telegram, service: $service }) {\n      data {\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation SEND_APPLICATION($name: String!, $telegram: String!, $service: String!) {\n    createApplication(data: { name: $name, telegram: $telegram, service: $service }) {\n      data {\n        id\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
