@@ -1,4 +1,4 @@
-import { getHomePageHero } from "@/lib/api";
+import { getHomePageHero } from "@/lib/api/getHomePageHero";
 import { BACKEND_URL } from "@/lib/consts";
 import { cormorant } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -12,10 +12,6 @@ const Hero = async () => {
 
   const { avatar, title, offers } = data.homePage?.data?.attributes?.hero!;
 
-  const offersTextList = offers?.split("\n");
-
-  console.log(data.homePage?.data?.attributes?.hero);
-
   const avatarURL = BACKEND_URL + avatar?.data?.attributes?.url!;
 
   return (
@@ -23,13 +19,6 @@ const Hero = async () => {
       <div className="container mx-auto min-h-[500px] py-[115px] flex justify-between relative">
         <div className="max-w-[600px] flex flex-col justify-between">
           <h1 className={cn(cormorant.className, " text-[100px] uppercase leading-[120%]")}>{title}</h1>
-          {/* <ul className="flex flex-col gap-5">
-            {offersTextList?.map((offer, index) => (
-              <li key={index}>
-                <p className="text-[25px]">{offer}</p>
-              </li>
-            ))}
-          </ul> */}
           <Markdown className={"text-[25px] flex flex-col gap-5"}>{offers}</Markdown>
         </div>
         <div className="relative h-full">
