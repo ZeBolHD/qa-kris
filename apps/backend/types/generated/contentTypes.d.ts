@@ -703,8 +703,8 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       "oneToMany",
       "api::question.question"
     >;
-    about_me: Attribute.RichText;
-    requisites_number: Attribute.String;
+    about_me: Attribute.RichText & Attribute.Required;
+    requisites_number: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -721,12 +721,13 @@ export interface ApiProgramProgram extends Schema.CollectionType {
     singularName: "program";
     pluralName: "programs";
     displayName: "Program";
+    description: "";
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -743,13 +744,14 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     singularName: "question";
     pluralName: "questions";
     displayName: "Question";
+    description: "";
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
-    answer: Attribute.Text;
+    name: Attribute.String & Attribute.Required;
+    answer: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -766,13 +768,14 @@ export interface ApiReviewReview extends Schema.CollectionType {
     singularName: "review";
     pluralName: "reviews";
     displayName: "Review";
+    description: "";
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    author: Attribute.String;
-    text: Attribute.Text;
+    author: Attribute.String & Attribute.Required;
+    text: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -815,12 +818,13 @@ export interface ApiToolTool extends Schema.CollectionType {
     singularName: "tool";
     pluralName: "tools";
     displayName: "Tool";
+    description: "";
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -31,24 +31,11 @@ export interface HomePageProgramAndTools extends Schema.Component {
   };
 }
 
-export interface HomePageRequisites extends Schema.Component {
-  collectionName: "components_home_page_requisites";
-  info: {
-    displayName: "Requisites";
-    icon: "phone";
-  };
-  attributes: {
-    name: Attribute.String;
-    number: Attribute.String;
-  };
-}
-
 declare module "@strapi/types" {
   export module Shared {
     export interface Components {
       "home-page.hero": HomePageHero;
       "home-page.program-and-tools": HomePageProgramAndTools;
-      "home-page.requisites": HomePageRequisites;
     }
   }
 }

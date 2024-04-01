@@ -33,10 +33,12 @@
       "target": "api::question.question"
     },
     "about_me": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "requisites_number": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
