@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-import styles from "./markdown.module.scss";
+import styles from "@/styles/markdown.module.scss";
 
 interface ServiceProps {
   name?: string;

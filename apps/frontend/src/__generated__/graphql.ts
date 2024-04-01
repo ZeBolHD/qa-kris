@@ -141,13 +141,6 @@ export type ComponentHomePageProgramAndToolsInput = {
   tools?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
-export type ComponentHomePageRequisites = {
-  __typename?: 'ComponentHomePageRequisites';
-  id: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  number?: Maybe<Scalars['String']['output']>;
-};
-
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -204,17 +197,18 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = Application | ComponentHomePageHero | ComponentHomePageProgramAndTools | ComponentHomePageRequisites | HomePage | I18NLocale | Program | Question | Review | Service | Tool | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Application | ComponentHomePageHero | ComponentHomePageProgramAndTools | HomePage | I18NLocale | Program | Question | Review | Service | Tool | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomePage = {
   __typename?: 'HomePage';
-  about_me?: Maybe<Scalars['String']['output']>;
+  about_me: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   hero?: Maybe<ComponentHomePageHero>;
   programs_and_tools?: Maybe<ComponentHomePageProgramAndTools>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   questions?: Maybe<QuestionRelationResponseCollection>;
-  requisites_number?: Maybe<Scalars['String']['output']>;
+  requisites_number: Scalars['String']['output'];
+  reviews?: Maybe<ReviewRelationResponseCollection>;
   services?: Maybe<ServiceRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -222,6 +216,14 @@ export type HomePage = {
 
 export type HomePageQuestionsArgs = {
   filters?: InputMaybe<QuestionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type HomePageReviewsArgs = {
+  filters?: InputMaybe<ReviewFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -253,6 +255,7 @@ export type HomePageInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   questions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   requisites_number?: InputMaybe<Scalars['String']['input']>;
+  reviews?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   services?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
@@ -669,7 +672,7 @@ export type PaginationArg = {
 export type Program = {
   __typename?: 'Program';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -944,7 +947,7 @@ export type ResponseCollectionMeta = {
 
 export type Review = {
   __typename?: 'Review';
-  author?: Maybe<Scalars['String']['output']>;
+  author: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   text?: Maybe<Scalars['String']['output']>;
@@ -984,6 +987,11 @@ export type ReviewInput = {
   author?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ReviewRelationResponseCollection = {
+  __typename?: 'ReviewRelationResponseCollection';
+  data: Array<ReviewEntity>;
 };
 
 export type Service = {
@@ -1069,7 +1077,7 @@ export type StringFilterInput = {
 export type Tool = {
   __typename?: 'Tool';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -1488,7 +1496,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type Get_Home_Page_AboutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get_Home_Page_AboutQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', about_me?: string | null } | null } | null } | null };
+export type Get_Home_Page_AboutQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', about_me: string } | null } | null } | null };
 
 export type Get_Home_Page_HeroQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1503,7 +1511,12 @@ export type Get_Home_Page_QuestionsQuery = { __typename?: 'Query', homePage?: { 
 export type Get_Home_Page_Hero_Requisites_NumberQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get_Home_Page_Hero_Requisites_NumberQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', requisites_number?: string | null } | null } | null } | null };
+export type Get_Home_Page_Hero_Requisites_NumberQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', requisites_number: string } | null } | null } | null };
+
+export type Get_Home_Page_ReviewsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Get_Home_Page_ReviewsQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', reviews?: { __typename?: 'ReviewRelationResponseCollection', data: Array<{ __typename?: 'ReviewEntity', attributes?: { __typename?: 'Review', author: string, text?: string | null } | null }> } | null } | null } | null } | null };
 
 export type Get_Home_Page_ServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1513,7 +1526,7 @@ export type Get_Home_Page_ServicesQuery = { __typename?: 'Query', homePage?: { _
 export type Get_Home_Page_Programs_And_ToolsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get_Home_Page_Programs_And_ToolsQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', programs_and_tools?: { __typename?: 'ComponentHomePageProgramAndTools', programs?: { __typename?: 'ProgramRelationResponseCollection', data: Array<{ __typename?: 'ProgramEntity', attributes?: { __typename?: 'Program', name?: string | null } | null }> } | null, tools?: { __typename?: 'ToolRelationResponseCollection', data: Array<{ __typename?: 'ToolEntity', attributes?: { __typename?: 'Tool', name?: string | null } | null }> } | null } | null } | null } | null } | null };
+export type Get_Home_Page_Programs_And_ToolsQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', programs_and_tools?: { __typename?: 'ComponentHomePageProgramAndTools', programs?: { __typename?: 'ProgramRelationResponseCollection', data: Array<{ __typename?: 'ProgramEntity', attributes?: { __typename?: 'Program', name: string } | null }> } | null, tools?: { __typename?: 'ToolRelationResponseCollection', data: Array<{ __typename?: 'ToolEntity', attributes?: { __typename?: 'Tool', name: string } | null }> } | null } | null } | null } | null } | null };
 
 export type Send_ApplicationMutationVariables = Exact<{
   name: Scalars['String']['input'];
@@ -1529,6 +1542,7 @@ export const Get_Home_Page_AboutDocument = {"kind":"Document","definitions":[{"k
 export const Get_Home_Page_HeroDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_HERO"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"offers"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_HeroQuery, Get_Home_Page_HeroQueryVariables>;
 export const Get_Home_Page_QuestionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_QUESTIONS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"answer"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_QuestionsQuery, Get_Home_Page_QuestionsQueryVariables>;
 export const Get_Home_Page_Hero_Requisites_NumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_HERO_REQUISITES_NUMBER"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requisites_number"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Hero_Requisites_NumberQuery, Get_Home_Page_Hero_Requisites_NumberQueryVariables>;
+export const Get_Home_Page_ReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_REVIEWS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reviews"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ReviewsQuery, Get_Home_Page_ReviewsQueryVariables>;
 export const Get_Home_Page_ServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_SERVICES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"time"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ServicesQuery, Get_Home_Page_ServicesQueryVariables>;
 export const Get_Home_Page_Programs_And_ToolsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_PROGRAMS_AND_TOOLS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"programs_and_tools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"programs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"tools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Programs_And_ToolsQuery, Get_Home_Page_Programs_And_ToolsQueryVariables>;
 export const Send_ApplicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SEND_APPLICATION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"service"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createApplication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"telegram"},"value":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"service"},"value":{"kind":"Variable","name":{"kind":"Name","value":"service"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<Send_ApplicationMutation, Send_ApplicationMutationVariables>;

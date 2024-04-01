@@ -19,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
+    "react-responsive-carousel": "^3.2.23",
     "sass": "^1.72.0",
     "tailwind-merge": "^2.2.2"
   },
