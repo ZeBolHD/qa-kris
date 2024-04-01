@@ -15,7 +15,7 @@ const ProgramsAndTools = async () => {
     []) as string[];
 
   return (
-    <section className="mt-[250px]">
+    <section id="program-and-tools" className="mt-[250px]">
       <div className="container mx-auto">
         <div>
           <h2

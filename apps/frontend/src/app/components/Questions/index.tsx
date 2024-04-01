@@ -13,7 +13,7 @@ const Questions = async () => {
     }[]) || [];
 
   return (
-    <section className="mt-[200px] w-full">
+    <section id="questions" className="mt-[200px] w-full">
       <div className="container mx-auto">
         <h2
           className={cn(cormorant.className, "text-center uppercase text-[100px] leading-[120%]")}

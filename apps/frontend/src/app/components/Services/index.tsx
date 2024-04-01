@@ -12,7 +12,7 @@ const Services = async () => {
   );
 
   return (
-    <section className="w-full mt-[200px]">
+    <section id="services" className="w-full mt-[200px]">
       <div className="container mx-auto relative">
         <Image
           className="absolute -right-[38px] top-0 -translate-y-1/2 w-[76px] h-[106px] z-0"

@@ -15,7 +15,7 @@ const Reviews = async () => {
   console.log(reviews);
 
   return (
-    <section className="w-full mt-[200px]">
+    <section id="reviews" className="w-full mt-[200px]">
       <div className="container mx-auto">
         <h2 className={cn(cormorant.className, "text-[100px] text-center uppercase")}>Отзывы</h2>
 
