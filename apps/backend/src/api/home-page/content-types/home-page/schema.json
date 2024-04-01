@@ -39,6 +39,11 @@
     "requisites_number": {
       "type": "string",
       "required": true
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review"
     }
   }
 }

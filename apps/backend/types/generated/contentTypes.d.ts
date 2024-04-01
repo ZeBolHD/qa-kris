@@ -705,6 +705,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     >;
     about_me: Attribute.RichText & Attribute.Required;
     requisites_number: Attribute.String & Attribute.Required;
+    reviews: Attribute.Relation<"api::home-page.home-page", "oneToMany", "api::review.review">;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -775,7 +776,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
   attributes: {
     author: Attribute.String & Attribute.Required;
-    text: Attribute.Text & Attribute.Required;
+    text: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
