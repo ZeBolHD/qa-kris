@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres
-    container_name: kris-strapi-postgres
+    container_name: postgres-strapi
     environment:
       - POSTGRES_USER=strapi
       - POSTGRES_PASSWORD=strapi
@@ -36,4 +36,4 @@ services:
       - backend
 
 volumes:
-  kris-strapi:
+  postgres-strapi:
