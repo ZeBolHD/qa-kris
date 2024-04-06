@@ -9,7 +9,7 @@ services:
     ports:
       - 5440:5432
     volumes:
-      - kris-strapi:/var/lib/postgresql/data
+      - strapi:/var/lib/postgresql/data
 
   backend:
     container_name: backend
@@ -36,4 +36,4 @@ services:
       - backend
 
 volumes:
-  postgres-strapi:
+  strapi:
