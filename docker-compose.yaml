@@ -10,7 +10,30 @@ services:
       - 5440:5432
     volumes:
       - kris-strapi:/var/lib/postgresql/data
-    
+
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    restart: always
+    ports:
+      - 1337:1337
+    env_file: .env.backend
+    depends_on:
+      - postgres
+
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    env_file: .env.frontend
+    depends_on:
+      - backend
 
 volumes:
   kris-strapi:
