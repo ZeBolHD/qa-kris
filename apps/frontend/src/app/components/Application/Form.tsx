@@ -48,10 +48,12 @@ const Form = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full p-[60px] min-h-[525px] flex flex-col gap-y-[50px] border-[2px] border-primary-bg rounded-[25px]"
+      className="w-full p-[60px] flex flex-col gap-y-[50px] text-[25px] border-[2px] border-primary-bg rounded-[25px]
+      max-desktop:p-[50px] max-laptop:p-[30px] max-tablet:px-[60px] max-mobile:px-[23px] max-mobile:py-[25px] 
+      max-desktop:text-[20px] max-laptop:text-[18px] max-tablet:text-[15px]"
     >
       <input
-        className="w-full bg-transparent border-b-[1px] border-primary-bg text-[25px] focus:outline-none"
+        className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
         id="name"
         type="text"
         placeholder="Ваше имя*"
@@ -63,7 +65,7 @@ const Form = () => {
       />
 
       <input
-        className="w-full bg-transparent border-b-[1px] border-primary-bg text-[25px] focus:outline-none"
+        className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
         id="telegram"
         type="text"
         placeholder="Ваш телеграм*"
@@ -75,7 +77,7 @@ const Form = () => {
       />
 
       <input
-        className="w-full bg-transparent border-b-[1px] border-primary-bg text-[25px] focus:outline-none"
+        className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
         id="service"
         type="text"
         placeholder="Какая услуга вас интересует?*"
@@ -89,7 +91,7 @@ const Form = () => {
       <div>
         <button
           type="submit"
-          className="w-full py-[10px] uppercase text-[25px] text-center rounded-[15px] bg-secondary-dark"
+          className="w-full py-[10px] uppercase text-center rounded-[15px] bg-secondary-dark"
           disabled={isLoading}
         >
           Оставить заявку
@@ -99,7 +101,7 @@ const Form = () => {
             <p className="text-red-500">Произошла ошибка при отправке заявки</p>
           )}
         </div>
-        <p className="mt-[50px] text-[20px] leading-[120%] text-secondary-light">
+        <p className="mt-[50px] text-[20px] leading-[120%] text-secondary-light max-desktop:text-[17px] max-desktop:mt-[25px] max-laptop:text-[12px]">
           Нажимая на кнопку, вы соглашаетесь с условиями обработки{" "}
           <Link className="underline" href="/privacy">
             персональных данных

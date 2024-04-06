@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Markdown from "react-markdown";
 import { Carousel } from "react-responsive-carousel";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import Review from "./Review";
 
 interface ReviewsCarouselProps {
   reviews: {
@@ -25,6 +27,7 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
 
   return (
     <Carousel
+      className="text-[20px] max-desktop:text-[17px] max-laptop:text-[15px] max-tablet:text-[12px]"
       showThumbs={false}
       showArrows
       swipeable={true}
@@ -33,11 +36,9 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
         hasPrev && (
           <button
             type="button"
-            className="absolute z-50 top-1/2 left-0 transform -translate-y-1/2"
-            onClick={() => {
-              onClickHandler();
-              console.log("clicked");
-            }}
+            className="absolute w-[30px] h-[54px] z-50 top-1/2 left-0 transform -translate-y-1/2  max-desktop:w-[26px] max-desktop:h-[54px]
+            max-laptop:w-[16px] max-laptop:h-[36px] max-tablet:w-[12px] max-tablet:h-[16px]"
+            onClick={onClickHandler}
             title={label}
           >
             <Image src={"/arrow.svg"} width={30} height={55} alt="arrow" />
@@ -50,7 +51,8 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            className="absolute z-50 top-1/2 right-0 transform rotate-180 -translate-y-1/2"
+            className="absolute w-[30px] h-[54px] z-50 top-1/2 right-0 transform rotate-180 -translate-y-1/2 max-desktop:w-[26px] max-desktop:h-[54px]
+             max-laptop:w-[16px] max-laptop:h-[36px] max-tablet:w-[12px] max-tablet:h-[16px]"
           >
             <Image src={"/arrow.svg"} width={30} height={55} alt="arrow" />
           </button>
@@ -60,7 +62,8 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
         if (isSelected) {
           return (
             <li
-              className="w-[17px] h-[17px] mx-[5px] rounded-full bg-primary-dark inline-block"
+              className="w-[17px] h-[17px] mx-[5px] rounded-full bg-primary-dark inline-block max-desktop:w-[13px] max-desktop:h-[13px]
+              max-desktop:mx-[3px] max-laptop:h-[10px] max-laptop:w-[10px] max-tablet:w-[7px] max-tablet:h-[7px]"
               aria-label={`Selected: ${label} ${index + 1}`}
               title={`Selected: ${label} ${index + 1}`}
             />
@@ -68,7 +71,8 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
         }
         return (
           <li
-            className="w-[17px] h-[17px] mx-[5px] rounded-full bg-primary-light  cursor-pointer inline-block"
+            className="w-[17px] h-[17px] mx-[5px] rounded-full bg-primary-light  cursor-pointer inline-block max-desktop:w-[13px] max-desktop:h-[13px]
+            max-desktop:mx-[3px] max-laptop:h-[10px] max-laptop:w-[10px] max-tablet:w-[7px] max-tablet:h-[7px]"
             onClick={onClickHandler}
             onKeyDown={onClickHandler}
             value={index}
@@ -82,12 +86,13 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
       }}
     >
       {reviewChunks.map((reviews, index) => (
-        <div key={index} className="grid grid-cols-2 gap-[30px] min-w-full px-[40px] mb-[75px]">
+        <div
+          key={index}
+          className="grid grid-cols-2 gap-[35px] min-w-full px-[50px] mb-[75px]
+        max-desktop:gap-[25px] max-laptop:gap-[20px] max-tablet:gap-[10px] max-laptop:px-[40px] max-tablet:px-[20px] max-mobile:px-[10px]"
+        >
           {reviews.map((review) => (
-            <div key={review.author} className="flex flex-col gap-4 text-left">
-              <Markdown className="">{review.text}</Markdown>
-              <p className="font-bold">Автор: {review.author}</p>
-            </div>
+            <Review {...review} key={review.author} />
           ))}
         </div>
       ))}

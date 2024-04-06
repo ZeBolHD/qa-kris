@@ -16,11 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(raleway.className, "h-full w-full", "bg-primary-bg text-primary-dark")}>
+    <html lang="ru">
+      <body className={cn(raleway.className, "bg-primary-bg text-primary-dark")}>
         <Header />
         {children}
         <Footer />
+        <div id="modal"></div>
       </body>
     </html>
   );

@@ -24,8 +24,8 @@ const Question = ({ index, name, answer }: QuestionProps) => {
   return (
     <li
       key={name}
-      className="w-full flex py-[30px] relative before:content-[''] before:w-full before:absolute before:h-[1px] before:top-0 
-      before:left-0 before:bg-primary-dark"
+      className="w-full flex py-[25px] relative before:content-[''] before:w-full before:absolute before:h-[1px] before:top-0 
+      before:left-0 before:bg-primary-dark max-mobile:py-[23px]"
     >
       <dl className="w-full">
         <div className="w-full flex items-center justify-between">
@@ -35,11 +35,12 @@ const Question = ({ index, name, answer }: QuestionProps) => {
           </dt>
 
           <button
-            className="w-[60px] h-[60px] relative border-[1px] border-primary-dark rounded-full"
+            className="min-w-[50px] min-h-[50px] relative border-[1px] border-primary-dark rounded-full
+            max-desktop:min-w-[35px] max-desktop:min-h-[35px]"
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
           >
-            <span className="text-[44px] absolute top-[29px] left-[29px] -translate-x-1/2 -translate-y-1/2">
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               {isOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +78,7 @@ const Question = ({ index, name, answer }: QuestionProps) => {
           style={{ maxHeight: isOpen ? contentHeight : 0 }}
           className={cn(
             isOpen ? `mt-[25px]` : "",
-            "text-[25px] transition-all duration-300 overflow-hidden w-full",
+            "transition-all duration-300 overflow-hidden w-full",
           )}
         >
           <div ref={answerRef}>

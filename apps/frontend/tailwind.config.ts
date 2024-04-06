@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -13,18 +13,25 @@ const config: Config = {
         "secondary-dark": "#735749",
         "primary-light": "#D9BFB0",
         "secondary-light": "#C0A18F",
-        "primary-bg": "#F2F5EA"
+        "primary-bg": "#F2F5EA",
       },
       container: {
         screens: {
-          sm: "640px",
-          md: "768px",
-          lg: "1024px",
-          xl: "1160px"
-        }
-      }
-    }
+          desktop: "1160px",
+          tablet: "1000px",
+          mobile: "1000зx",
+          xs: "300px",
+        },
+      },
+    },
+    screens: {
+      desktop: "1600px",
+      laptop: "1360px",
+      tablet: "1000px",
+      mobile: "660px",
+      xs: "480px",
+    },
   },
-  plugins: []
+  plugins: [],
 };
 export default config;

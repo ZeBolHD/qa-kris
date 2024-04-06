@@ -7,4 +7,35 @@
       list-style-type: circle;
     }
   }
+
+  @media screen and (max-width: 1360px) {
+    gap: 0px;
+
+    p {
+      margin-top: 10px;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    ul {
+      margin-left: 15px;
+    }
+  }
+}
+
+.markdown-review {
+  width: 100%;
+
+  p {
+    margin-top: 25px;
+    width: 100%;
+
+    @media screen and (max-width: 980px) {
+      margin-top: 15px;
+    }
+  }
 }
