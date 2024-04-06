@@ -8,8 +8,6 @@ export default async function PrivacyPage() {
 
   const text = policy?.privacyPage?.data?.attributes?.text;
 
-  console.log(text);
-
   return (
     <section className="w-full mt-[50px] max-laptop:mt-[30px] max-tablet:mt-[25px]">
       <div
