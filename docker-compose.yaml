@@ -37,3 +37,4 @@ services:
 
 volumes:
   strapi:
+    external: true
