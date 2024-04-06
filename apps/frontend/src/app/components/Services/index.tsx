@@ -22,7 +22,7 @@ const Services = async () => {
         max-laptop:max-w-[630px] max-tablet:max-w-[460px] max-mobile:max-w-[300px]"
       >
         <Image
-          className="absolute right-0 top-0 -translate-x-1/2 -translate-y-1/2 w-[76px] h-[106px] z-0 max-desktop:w-[65px] max-desktop:h-[90px]
+          className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 w-[76px] h-[106px] z-0 max-desktop:w-[65px] max-desktop:h-[90px]
           max-laptop:w-[40px] max-laptop:h-[56px]"
           src={"/little-star.svg"}
           alt="star"
