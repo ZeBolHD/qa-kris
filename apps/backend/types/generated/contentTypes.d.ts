@@ -716,6 +716,28 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
 }
 
+export interface ApiPrivacyPagePrivacyPage extends Schema.SingleType {
+  collectionName: "privacy_pages";
+  info: {
+    singularName: "privacy-page";
+    pluralName: "privacy-pages";
+    displayName: "Privacy Page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    text: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<"api::privacy-page.privacy-page", "oneToOne", "admin::user"> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<"api::privacy-page.privacy-page", "oneToOne", "admin::user"> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProgramProgram extends Schema.CollectionType {
   collectionName: "programs";
   info: {
@@ -854,6 +876,7 @@ declare module "@strapi/types" {
       "plugin::users-permissions.user": PluginUsersPermissionsUser;
       "api::application.application": ApiApplicationApplication;
       "api::home-page.home-page": ApiHomePageHomePage;
+      "api::privacy-page.privacy-page": ApiPrivacyPagePrivacyPage;
       "api::program.program": ApiProgramProgram;
       "api::question.question": ApiQuestionQuestion;
       "api::review.review": ApiReviewReview;
