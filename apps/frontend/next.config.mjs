@@ -4,10 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost"
-      }
-    ]
-  }
+        hostname: process.env.BACKEND_HOSTNAME,
+        port: process.env.BACKEND_PORT,
+      },
+    ],
+  },
 };
 
 export default nextConfig;

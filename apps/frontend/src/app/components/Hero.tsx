@@ -15,7 +15,7 @@ const Hero = async () => {
 
   const { avatar, title, offers } = data.homePage?.data?.attributes?.hero!;
 
-  const avatarURL = BACKEND_URL + avatar?.data?.attributes?.url!;
+  const avatarURL = BACKEND_URL + avatar?.data?.attributes?.url! + `?${new Date().getTime()}`;
 
   return (
     <section className="w-full">
