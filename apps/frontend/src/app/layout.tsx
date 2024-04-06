@@ -17,9 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={cn(raleway.className, "bg-primary-bg text-primary-dark")}>
+      <body
+        className={cn(
+          raleway.className,
+          "bg-primary-bg text-primary-dark flex flex-col min-h-screen",
+        )}
+      >
         <Header />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
         <div id="modal"></div>
       </body>

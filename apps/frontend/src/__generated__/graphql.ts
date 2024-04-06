@@ -197,7 +197,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = Application | ComponentHomePageHero | ComponentHomePageProgramAndTools | HomePage | I18NLocale | Program | Question | Review | Service | Tool | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Application | ComponentHomePageHero | ComponentHomePageProgramAndTools | HomePage | I18NLocale | PrivacyPage | Program | Question | Review | Service | Tool | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomePage = {
   __typename?: 'HomePage';
@@ -388,6 +388,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteApplication?: Maybe<ApplicationEntityResponse>;
   deleteHomePage?: Maybe<HomePageEntityResponse>;
+  deletePrivacyPage?: Maybe<PrivacyPageEntityResponse>;
   deleteProgram?: Maybe<ProgramEntityResponse>;
   deleteQuestion?: Maybe<QuestionEntityResponse>;
   deleteReview?: Maybe<ReviewEntityResponse>;
@@ -413,6 +414,7 @@ export type Mutation = {
   updateApplication?: Maybe<ApplicationEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomePage?: Maybe<HomePageEntityResponse>;
+  updatePrivacyPage?: Maybe<PrivacyPageEntityResponse>;
   updateProgram?: Maybe<ProgramEntityResponse>;
   updateQuestion?: Maybe<QuestionEntityResponse>;
   updateReview?: Maybe<ReviewEntityResponse>;
@@ -592,6 +594,11 @@ export type MutationUpdateHomePageArgs = {
 };
 
 
+export type MutationUpdatePrivacyPageArgs = {
+  data: PrivacyPageInput;
+};
+
+
 export type MutationUpdateProgramArgs = {
   data: ProgramInput;
   id: Scalars['ID']['input'];
@@ -669,6 +676,30 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type PrivacyPage = {
+  __typename?: 'PrivacyPage';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type PrivacyPageEntity = {
+  __typename?: 'PrivacyPageEntity';
+  attributes?: Maybe<PrivacyPage>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type PrivacyPageEntityResponse = {
+  __typename?: 'PrivacyPageEntityResponse';
+  data?: Maybe<PrivacyPageEntity>;
+};
+
+export type PrivacyPageInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Program = {
   __typename?: 'Program';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -728,6 +759,7 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  privacyPage?: Maybe<PrivacyPageEntityResponse>;
   program?: Maybe<ProgramEntityResponse>;
   programs?: Maybe<ProgramEntityResponseCollection>;
   question?: Maybe<QuestionEntityResponse>;
@@ -776,6 +808,11 @@ export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPrivacyPageArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -1523,6 +1560,11 @@ export type Get_Home_Page_ServicesQueryVariables = Exact<{ [key: string]: never;
 
 export type Get_Home_Page_ServicesQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', services?: { __typename?: 'ServiceRelationResponseCollection', data: Array<{ __typename?: 'ServiceEntity', attributes?: { __typename?: 'Service', name: string, price: string, time?: string | null, description: string } | null }> } | null } | null } | null } | null };
 
+export type Get_Privacy_Page_TextQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Get_Privacy_Page_TextQuery = { __typename?: 'Query', privacyPage?: { __typename?: 'PrivacyPageEntityResponse', data?: { __typename?: 'PrivacyPageEntity', attributes?: { __typename?: 'PrivacyPage', text?: string | null } | null } | null } | null };
+
 export type Get_Home_Page_Programs_And_ToolsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1544,5 +1586,6 @@ export const Get_Home_Page_QuestionsDocument = {"kind":"Document","definitions":
 export const Get_Home_Page_Hero_Requisites_NumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_HERO_REQUISITES_NUMBER"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requisites_number"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Hero_Requisites_NumberQuery, Get_Home_Page_Hero_Requisites_NumberQueryVariables>;
 export const Get_Home_Page_ReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_REVIEWS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reviews"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ReviewsQuery, Get_Home_Page_ReviewsQueryVariables>;
 export const Get_Home_Page_ServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_SERVICES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"time"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ServicesQuery, Get_Home_Page_ServicesQueryVariables>;
+export const Get_Privacy_Page_TextDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_PRIVACY_PAGE_TEXT"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"privacyPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Privacy_Page_TextQuery, Get_Privacy_Page_TextQueryVariables>;
 export const Get_Home_Page_Programs_And_ToolsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_PROGRAMS_AND_TOOLS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"programs_and_tools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"programs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"tools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Programs_And_ToolsQuery, Get_Home_Page_Programs_And_ToolsQueryVariables>;
 export const Send_ApplicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SEND_APPLICATION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"service"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createApplication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"telegram"},"value":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"service"},"value":{"kind":"Variable","name":{"kind":"Name","value":"service"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<Send_ApplicationMutation, Send_ApplicationMutationVariables>;
