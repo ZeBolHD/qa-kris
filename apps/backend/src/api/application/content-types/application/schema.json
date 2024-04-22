@@ -4,7 +4,8 @@
   "info": {
     "singularName": "application",
     "pluralName": "applications",
-    "displayName": "Application"
+    "displayName": "Application",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,24 @@
     },
     "notes": {
       "type": "richtext"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "from": {
+      "type": "string"
+    },
+    "study_start": {
+      "type": "string"
+    },
+    "experience": {
+      "type": "string"
+    },
+    "work": {
+      "type": "text"
+    },
+    "comment": {
+      "type": "text"
     }
   }
 }

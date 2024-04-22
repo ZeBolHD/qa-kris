@@ -664,6 +664,7 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     singularName: "application";
     pluralName: "applications";
     displayName: "Application";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -673,6 +674,12 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     telegram: Attribute.String;
     service: Attribute.String;
     notes: Attribute.RichText;
+    age: Attribute.Integer;
+    from: Attribute.String;
+    study_start: Attribute.String;
+    experience: Attribute.String;
+    work: Attribute.Text;
+    comment: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
