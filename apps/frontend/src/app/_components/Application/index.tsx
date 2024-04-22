@@ -1,17 +1,24 @@
 import { cormorant } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import Form from "./Form";
+import { getHomePageServices } from "@/lib/api/getHomePageServices";
 
-const Application = () => {
+const Application = async () => {
+  const services = await getHomePageServices();
+
+  const serviceNames = services.homePage?.data?.attributes?.services?.data.map(
+    (service) => service.attributes?.name,
+  ) as string[];
+
   return (
     <section id="application" className="mt-[200px] max-laptop:mt-[150px] max-tablet:mt-[100px]">
       <div className="w-[95%] mx-auto bg-primary-dark rounded-[15px] max-desktop:w-[98%]">
         <div
-          className="w-full flex mx-auto py-[50px] justify-between gap-x-[40px] text-primary-bg
+          className="w-full mx-auto py-[50px] justify-between gap-x-[40px] text-primary-bg
          max-w-[1160px] max-desktop:max-w-[1010px] max-laptop:max-w-[630px] max-tablet:max-w-[460px] max-mobile:max-w-[300px] 
-         max-laptop:justify-start max-laptop:gap-0 max-tablet:flex-col max-tablet:py-[30px]"
+         max-laptop:justify-start max-laptop:gap-0 max-tablet:py-[30px]"
         >
-          <div className="w-full flex flex-col justify-between max-laptop:max-w-[220px] max-tablet:max-w-none max-tablet:text-center">
+          <div className="w-full text-center flex flex-col gap-[25px] justify-between max-tablet:gap-[15px]">
             <h2
               className={cn(
                 cormorant.className,
@@ -25,8 +32,8 @@ const Application = () => {
               * Проверьте, что у вас открытый аккаунт, чтобы я могла с вами связаться.
             </p>
           </div>
-          <div className="w-full max-tablet:mt-[15px]">
-            <Form />
+          <div className="w-full mt-[25px] max-tablet:mt-[15px]">
+            <Form serviceNames={serviceNames} />
           </div>
         </div>
       </div>

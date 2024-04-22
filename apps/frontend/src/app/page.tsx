@@ -1,10 +1,10 @@
-import AboutMe from "./components/AboutMe";
-import Application from "./components/Application";
-import Hero from "./components/Hero";
-import ProgramsAndTools from "./components/ProgramsAndTools";
-import Questions from "./components/Questions";
-import Reviews from "./components/Reviews";
-import Services from "./components/Services";
+import AboutMe from "./_components/AboutMe";
+import Application from "./_components/Application";
+import Hero from "./_components/Hero";
+import ProgramsAndTools from "./_components/ProgramsAndTools";
+import Questions from "./_components/Questions";
+import Reviews from "./_components/Reviews";
+import Services from "./_components/Services";
 
 export default function Home() {
   return (

@@ -19,7 +19,7 @@ const Footer = () => {
               "text-[100px] uppercase text-center leading-[120%] max-desktop:text-[70px] max-laptop:text-[60px] max-tablet:text-[40px]",
             )}
           >
-            Your future mentor Kristina Petrova
+            Жду вас у себя на менторстве
           </h2>
 
           <div className="w-full flex justify-between items-center">

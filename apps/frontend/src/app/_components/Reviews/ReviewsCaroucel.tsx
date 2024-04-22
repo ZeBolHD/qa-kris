@@ -41,7 +41,13 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
             onClick={onClickHandler}
             title={label}
           >
-            <Image src={"/arrow.svg"} width={30} height={55} alt="arrow" />
+            <Image
+              src={"/arrow.svg"}
+              width={30}
+              height={55}
+              className="w-[30px] h-[55px]"
+              alt="arrow"
+            />
           </button>
         )
       }
@@ -54,7 +60,13 @@ const ReviewsCarousel = ({ reviews }: ReviewsCarouselProps) => {
             className="absolute w-[30px] h-[54px] z-50 top-1/2 right-0 transform rotate-180 -translate-y-1/2 max-desktop:w-[26px] max-desktop:h-[54px]
              max-laptop:w-[16px] max-laptop:h-[36px] max-tablet:w-[12px] max-tablet:h-[16px]"
           >
-            <Image src={"/arrow.svg"} width={30} height={55} alt="arrow" />
+            <Image
+              src={"/arrow.svg"}
+              width={30}
+              height={55}
+              className="w-[30px] h-[55px]"
+              alt="arrow"
+            />
           </button>
         )
       }

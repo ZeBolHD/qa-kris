@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { raleway } from "@/lib/fonts";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "Kris QA",
