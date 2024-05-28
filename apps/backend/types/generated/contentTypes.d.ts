@@ -703,7 +703,15 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
   attributes: {
     hero: Attribute.Component<"home-page.hero">;
-    programs_and_tools: Attribute.Component<"home-page.program-and-tools">;
+    tool_categories: Attribute.Component<"home-page.program-and-tools", true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 2;
+        },
+        number
+      >;
     services: Attribute.Relation<"api::home-page.home-page", "oneToMany", "api::service.service">;
     questions: Attribute.Relation<
       "api::home-page.home-page",
@@ -781,7 +789,7 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    answer: Attribute.Text & Attribute.Required;
+    answer: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -854,7 +862,7 @@ export interface ApiToolTool extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
+    name: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -17,17 +17,13 @@ export interface HomePageHero extends Schema.Component {
 export interface HomePageProgramAndTools extends Schema.Component {
   collectionName: "components_home_page_program_and_tools";
   info: {
-    displayName: "Programs and Tools";
+    displayName: "Tool Categories";
     icon: "grid";
     description: "";
   };
   attributes: {
-    programs: Attribute.Relation<
-      "home-page.program-and-tools",
-      "oneToMany",
-      "api::program.program"
-    >;
     tools: Attribute.Relation<"home-page.program-and-tools", "oneToMany", "api::tool.tool">;
+    name: Attribute.String;
   };
 }
 

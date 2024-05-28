@@ -17,10 +17,13 @@
       "repeatable": false,
       "component": "home-page.hero"
     },
-    "programs_and_tools": {
+    "tool_categories": {
       "type": "component",
-      "repeatable": false,
-      "component": "home-page.program-and-tools"
+      "repeatable": true,
+      "component": "home-page.program-and-tools",
+      "max": 2,
+      "min": 2,
+      "required": true
     },
     "services": {
       "type": "relation",
