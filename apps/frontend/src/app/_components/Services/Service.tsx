@@ -48,7 +48,7 @@ const Service = ({ name, price, time, description }: ServiceProps) => {
               <ToggleListItem isToggled={isOpen} />
             </div>
           </div>
-          <div className="max-w-[500px] flex font-bold text-right max-tablet:mt-[15px] max-tablet:mr-0 max-tablet:ml-auto">
+          <div className="max-w-[500px] flex font-bold text-right max-tablet:mt-[10px] max-tablet:mr-0 max-tablet:ml-auto">
             <p>{priceAndTime}</p>
           </div>
         </div>
