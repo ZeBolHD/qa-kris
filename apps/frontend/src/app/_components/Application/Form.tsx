@@ -6,12 +6,17 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import FormInput from "./FormInputText";
+import FormInputText from "./FormInputText";
+import FormInputNumber from "./FormInputNumber";
+import FormInputTextarea from "./FormInputTextarea";
+import FormInputSelect from "./FormInputSelect";
 
 interface FormProps {
   serviceNames: string[];
 }
 
-type FromInput = {
+type FormInputType = {
   name: string;
   telegram: string;
   service: string;
@@ -29,27 +34,25 @@ const Form = ({ serviceNames }: FormProps) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FromInput>();
+  } = useForm<FormInputType>();
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<"success" | "error" | "idle">("idle");
 
-  const onSubmit: SubmitHandler<FromInput> = async (data) => {
-    console.log(data);
-
+  const onSubmit: SubmitHandler<FormInputType> = async (data) => {
     setIsLoading(true);
     setStatus("idle");
 
     const error = await sendApplication(data);
 
+    setIsLoading(false);
+
     if (error) {
       setStatus("error");
-      setIsLoading(false);
       return;
     }
 
     setStatus("success");
     reset();
-    setIsLoading(false);
   };
 
   if (status === "success") {
@@ -75,149 +78,80 @@ const Form = ({ serviceNames }: FormProps) => {
       max-desktop:text-[20px] max-laptop:text-[18px] max-tablet:text-[15px]"
     >
       <div className="grid grid-cols-2 gap-x-[50px] gap-y-[25px] max-tablet:grid-cols-1">
-        <div className="w-full">
-          <input
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="name"
-            type="text"
-            placeholder="Ваше имя"
-            minLength={2}
-            required
-            {...register("name", {
-              required: true,
-            })}
-            disabled={isLoading}
-          />
-          {errors.name && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputText
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          id="name"
+          placeholder="Ваше имя"
+        />
 
-        <div className="w-full">
-          <input
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="telegram"
-            type="text"
-            placeholder="Ваш телеграм"
-            minLength={4}
-            {...register("telegram", {
-              required: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.telegram && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputText
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          id="telegram"
+          placeholder="Ваш Telegram"
+        />
 
-        <div className="w-full">
-          <input
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="age"
-            type="number"
-            placeholder="Ваш возраст"
-            min={10}
-            max={100}
-            {...register("age", {
-              required: true,
-              min: 10,
-              max: 100,
-              valueAsNumber: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.age && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputNumber
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          min={10}
+          max={100}
+          id="age"
+          placeholder="Ваш возраст"
+        />
 
-        <div className="w-full">
-          <input
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="study_start"
-            type="text"
-            placeholder="Как скоро хотите начать обучение"
-            {...register("studyStart", {
-              required: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.studyStart && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputText
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          id="studyStart"
+          placeholder="Как скоро хотите начать обучение?"
+        />
 
-        <div className="w-full">
-          <textarea
-            className="w-full min-h-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="work"
-            placeholder="В данный момент работаете? (если да, то опишите чем занимаетесь)"
-            minLength={4}
-            {...register("work", {
-              required: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.work && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputTextarea
+          id="work"
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          placeholder="В данный момент работаете? (если да, то опишите, чем занимаетесь)"
+        />
 
-        <div className="w-full">
-          <textarea
-            className="w-full min-h-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="experience"
-            placeholder="Был ли опыт в айти? (если да, то опишите какой)"
-            minLength={4}
-            {...register("experience", {
-              required: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.experience && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputTextarea
+          id="experience"
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          placeholder="Был ли опыт в айти? (если да, то опишите какой)"
+        />
 
-        <div className="w-full">
-          <input
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="from"
-            type="text"
-            placeholder="Вы из РФ?"
-            {...register("from", {
-              required: true,
-            })}
-            required
-            disabled={isLoading}
-          />
-          {errors.from && <p className="text-red-500">Поле обязательно для заполнения</p>}
-        </div>
+        <FormInputText
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          id="from"
+          placeholder="Вы из РФ?"
+        />
 
-        <div className="w-full">
-          <select
-            id="service"
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            {...register("service", {
-              required: true,
-            })}
-            defaultValue={""}
-          >
-            <option className="w-full bg-primary-dark text-secondary-light" disabled value={""}>
-              Какая услуга вас интересует?*
-            </option>
-            {serviceNames.map((service) => (
-              <option key={service} value={service} className="w-full bg-primary-dark">
-                {service}
-              </option>
-            ))}
-          </select>
+        <FormInputSelect
+          options={serviceNames}
+          id="service"
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          placeholder="Какая услуга вас интересует?*"
+        />
 
-          {errors.service && <p className="text-red-500">Выберите услугу из списка</p>}
-        </div>
-
-        <div className="w-full">
-          <textarea
-            className="w-full bg-transparent border-b-[1px] border-primary-bg focus:outline-none"
-            id="comment"
-            placeholder="Комментарий"
-            {...register("comment")}
-            disabled={isLoading}
-          />
-        </div>
+        <FormInputTextarea
+          id="comment"
+          register={register}
+          errors={errors}
+          isLoading={isLoading}
+          placeholder="Комментарий"
+        />
       </div>
 
       <div className="mt-[50px]">
