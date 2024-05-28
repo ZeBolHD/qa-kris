@@ -1,18 +1,16 @@
-import { getHomePageProgramsAndTools } from "@/lib/api/getProgramsAndTools";
+import { getHomePageToolCategories } from "@/lib/api/getToolCategories";
 import { cormorant } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import ItemsList from "./ItemsList";
 import Image from "next/image";
 
 const ProgramsAndTools = async () => {
-  const data = await getHomePageProgramsAndTools();
+  const data = await getHomePageToolCategories();
 
-  const programsAndTools = data.homePage?.data?.attributes!.programs_and_tools!;
-
-  const programs = (programsAndTools.programs?.data.map((program) => program.attributes?.name) ||
-    []) as string[];
-  const tools = (programsAndTools.tools?.data.map((tool) => tool.attributes?.name) ||
-    []) as string[];
+  const toolCategories = data.homePage?.data?.attributes?.tool_categories!.map((toolCategory) => ({
+    name: toolCategory!.name,
+    tools: toolCategory!.tools!.data.map((tool) => tool!.attributes!.name),
+  }));
 
   return (
     <section
@@ -32,10 +30,10 @@ const ProgramsAndTools = async () => {
               max-tablet:w-full max-tablet:text-center`,
             )}
           >
-            Программа
+            {toolCategories?.[0]?.name || ""}
           </h2>
           <div className="flex justify-between w-full max-tablet:flex-col">
-            <ItemsList items={programs} />
+            <ItemsList items={toolCategories?.[0]?.tools} />
             <div className="w-[400px] min-h-full relative max-tablet:w-full max-tablet:min-h-[180px] max-tablet:my-[50px]">
               <Image
                 className="w-[400px] h-[350px] object-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
@@ -55,9 +53,9 @@ const ProgramsAndTools = async () => {
               />
             </div>
             <h2 className={cn(cormorant.className, "text-[40px] uppercase tablet:hidden")}>
-              Инструменты
+              {toolCategories?.[1]?.name || ""}
             </h2>
-            <ItemsList items={tools} reversed />
+            <ItemsList items={toolCategories?.[1]?.tools} reversed />
             <div className="tablet:hidden w-full h-[1px] bg-primary-dark" />
           </div>
           <h2
@@ -68,7 +66,7 @@ const ProgramsAndTools = async () => {
               max-tablet:hidden`,
             )}
           >
-            Инструменты
+            {toolCategories?.[1]?.name || ""}
           </h2>
         </div>
       </div>

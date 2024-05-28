@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Markdown from "react-markdown";
 
 interface ItemsListProps {
   items?: string[];
@@ -29,7 +30,7 @@ const ItemsList = ({ items, reversed }: ItemsListProps) => {
           )}
           key={item}
         >
-          <p className="">{item}</p>
+          <Markdown>{item}</Markdown>
         </li>
       ))}
     </ul>

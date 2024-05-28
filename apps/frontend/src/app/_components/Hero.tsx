@@ -15,7 +15,7 @@ const Hero = async () => {
 
   const { avatar, title, offers } = data.homePage?.data?.attributes?.hero!;
 
-  const avatarURL = BACKEND_URL + avatar?.data?.attributes?.url! + `?${new Date().getTime()}`;
+  const avatarURL = BACKEND_URL + avatar?.data?.attributes?.url! + `?${new Date().getTime()}` || "";
 
   return (
     <section className="w-full">
@@ -54,7 +54,7 @@ const Hero = async () => {
               className="w-[400px] h-[515px] relative z-50 object-cover border-[3px] border-primary-bg rounded-[15px] rounded-t-[250px]
               max-desktop:w-[300px] max-desktop:h-[400px] 
               max-laptop:min-w-[230px] max-laptop:h-[300px] max-tablet:w-[230px]"
-              src={avatarURL!}
+              src={avatarURL}
               alt="avatar"
               width={avatar.data!.attributes!.width as number}
               height={avatar.data!.attributes!.height as number}

@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import ToggleListItem from "../ToggleListItem";
+import Markdown from "react-markdown";
 
 interface QuestionProps {
   index: number;
@@ -21,11 +23,16 @@ const Question = ({ index, name, answer }: QuestionProps) => {
     }
   }, [isOpen]);
 
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <li
       key={name}
       className="w-full flex py-[25px] relative before:content-[''] before:w-full before:absolute before:h-[1px] before:top-0 
-      before:left-0 before:bg-primary-dark max-mobile:py-[23px]"
+      before:left-0 before:bg-primary-dark max-mobile:py-[23px] cursor-pointer"
+      onClick={handleOpen}
     >
       <dl className="w-full">
         <div className="w-full flex items-center justify-between">
@@ -34,45 +41,7 @@ const Question = ({ index, name, answer }: QuestionProps) => {
             <h3 className="ml-[10px]">{name}</h3>
           </dt>
 
-          <button
-            className="min-w-[50px] min-h-[50px] relative border-[1px] border-primary-dark rounded-full
-            max-desktop:min-w-[35px] max-desktop:min-h-[35px]"
-            type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              {isOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14" />
-                  <path d="M12 5v14" />
-                </svg>
-              )}
-            </span>
-          </button>
+          <ToggleListItem isToggled={isOpen} />
         </div>
         <div
           style={{ maxHeight: isOpen ? contentHeight : 0 }}
@@ -83,7 +52,7 @@ const Question = ({ index, name, answer }: QuestionProps) => {
         >
           <div ref={answerRef}>
             <dd>
-              <p>{answer}</p>
+              <Markdown>{answer}</Markdown>
             </dd>
           </div>
         </div>
