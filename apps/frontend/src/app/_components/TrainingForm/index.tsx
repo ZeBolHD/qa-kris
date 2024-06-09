@@ -13,7 +13,7 @@ const TrainingForm = () => {
   const { completed, resetForm } = useContext(TrainingFormContext);
 
   return (
-    <div className="m-auto mt-[200px] w-[95%] max-desktop:w-[98%] text-[20px] max-desktop:text-[18px] max-tablet:text-[15px[">
+    <div className="m-auto mt-[200px] w-[95%] max-desktop:w-[98%] text-[20px] max-desktop:text-[18px] max-tablet:text-[15px]">
       <h2
         className={cn(
           cormorant.className,
