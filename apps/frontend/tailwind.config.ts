@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "primary-dark": "#412D26",
+        "primary-dark": "#341D08",
         "secondary-dark": "#735749",
         "primary-light": "#D9BFB0",
         "secondary-light": "#C0A18F",
-        "primary-bg": "#F2F5EA",
+        "primary-bg": "#FFFFFF",
       },
       container: {
         screens: {
