@@ -51,9 +51,9 @@ const Hero = async () => {
           </div>
           <div className="relative max-mobile:w-full text-center flex justify-center items-center">
             <Image
-              className="w-[400px] h-[515px] relative z-50 object-cover border-[3px] border-primary-bg rounded-[15px] rounded-t-[250px]
-              max-desktop:w-[300px] max-desktop:h-[400px] 
-              max-laptop:min-w-[230px] max-laptop:h-[300px] max-tablet:w-[230px]"
+              className="w-[500px] h-[515px] relative z-50 object-cover border-[3px] border-primary-bg rounded-full
+              max-desktop:w-[400px] max-desktop:h-[400px] 
+              max-laptop:min-w-[300px] max-laptop:h-[300px] max-tablet:w-[230px]"
               src={avatarURL}
               alt="avatar"
               width={avatar.data!.attributes!.width as number}

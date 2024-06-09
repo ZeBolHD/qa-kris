@@ -9,6 +9,8 @@ import ProgramsAndTools from "./_components/ProgramsAndTools";
 import Questions from "./_components/Questions";
 import Reviews from "./_components/Reviews";
 import Services from "./_components/Services";
+import TrainingForm from "./_components/TrainingForm";
+import TrainingFormProvider from "./_components/TrainingForm/TrainingFormProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomePageHero();
@@ -38,6 +40,9 @@ export default function Home() {
     <>
       <Hero />
       <AboutMe />
+      <TrainingFormProvider>
+        <TrainingForm />
+      </TrainingFormProvider>
       <ProgramsAndTools />
       <Services />
       <Application />
