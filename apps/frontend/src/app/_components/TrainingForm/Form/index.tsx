@@ -1,9 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Character } from "../types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TrainingFormContext } from "../TrainingFormProvider";
 import { clothes, clothesKeys, genderKeys, genders, hairColors, hairColorsKeys } from "../consts";
-import { cn } from "@/lib/utils";
 
 const Form = () => {
   const { register, handleSubmit, reset } = useForm<Character>();

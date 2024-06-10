@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { TrainingFormContext } from "../TrainingFormProvider";
-import FoundBugs from "./FoundBugs";
-import ErrorBlock from "../ErrorBlock";
 import Character from "./Character";
 
 const Result = () => {
