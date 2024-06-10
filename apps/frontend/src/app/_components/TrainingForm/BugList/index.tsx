@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { TrainingFormContext } from "../TrainingFormProvider";
-
 import BugCheckbox from "./BugCheckbox";
 
-const FoundBugs = () => {
+const BugList = () => {
   const { foundBugs, triggerBug } = useContext(TrainingFormContext);
 
   const onLastClick = () => {
@@ -11,12 +10,17 @@ const FoundBugs = () => {
   };
 
   return (
-    <div className="flex gap-x-10 gap-y-3 flex-wrap">
+    <ul className="flex justify-between flex-wrap p-[20px]">
       {foundBugs.map((bug, index) => (
-        <BugCheckbox key={bug.name} index={index} {...bug} onClick={onLastClick} />
+        <BugCheckbox
+          key={bug.name}
+          index={index}
+          {...bug}
+          onClick={bug.name === "checkbox" ? onLastClick : undefined}
+        />
       ))}
-    </div>
+    </ul>
   );
 };
 
-export default FoundBugs;
+export default BugList;

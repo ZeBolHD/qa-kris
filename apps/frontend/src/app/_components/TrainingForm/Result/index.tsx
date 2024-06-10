@@ -1,23 +1,21 @@
 import { useContext } from "react";
 import { TrainingFormContext } from "../TrainingFormProvider";
 import FoundBugs from "./FoundBugs";
-import ErrorBlock from "./ErrorBlock";
-import CharacterImage from "./CharacterImage";
-import Link from "next/link";
+import ErrorBlock from "../ErrorBlock";
+import Character from "./Character";
 
 const Result = () => {
   const { isError } = useContext(TrainingFormContext);
 
-  return (
-    <div className="h-full flex flex-col justify-center items-center">
-      <div className="w-full max-laptop:hidden">
-        <FoundBugs />
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center w-full mt-[25px]">
+        <h3 className="text-center">Кажется, что-то пошло не так.</h3>
       </div>
-      <div className="flex h-full w-full items-center justify-center">
-        {isError ? <ErrorBlock /> : <CharacterImage />}
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return <Character />;
 };
 
 export default Result;

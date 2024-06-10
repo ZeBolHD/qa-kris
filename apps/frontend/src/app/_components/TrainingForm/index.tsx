@@ -1,19 +1,22 @@
 "use client";
 
 import { useContext } from "react";
-import Form from "./Form";
-import Result from "./Result";
-import FoundBugs from "./Result/FoundBugs";
+
 import { TrainingFormContext } from "./TrainingFormProvider";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { cormorant } from "@/lib/fonts";
 
+import Result from "./Result";
+import CompletedForm from "./CompletedForm";
+import ErrorBlock from "./ErrorBlock";
+import Form from "./Form";
+import BugList from "./BugList";
+
 const TrainingForm = () => {
-  const { completed, resetForm } = useContext(TrainingFormContext);
+  const { completed, resetForm, isFormSubmitted, isError } = useContext(TrainingFormContext);
 
   return (
-    <div className="m-auto mt-[200px] w-[95%] max-desktop:w-[98%] text-[20px] max-desktop:text-[18px] max-tablet:text-[15px]">
+    <div className="m-auto mt-[200px] text-[20px]">
       <h2
         className={cn(
           cormorant.className,
@@ -24,57 +27,47 @@ const TrainingForm = () => {
         Попробуй себя в роли тестировщика
       </h2>
 
-      {!completed ? (
-        <div className="mx-auto min-w-full mt-[25px] border-[2px] border-primary-dark rounded-[15px] p-[25px] min-h-full">
-          <div className="max-w-[1160px] h-full mx-auto max-desktop:max-w-[1010px] max-laptop:max-w-[630px] max-tablet:max-w-[460px] ">
-            <p>
-              Представь что ты создаешь персонажа со стартовым 0 уровнем. <br /> Протестируй форму
-              создания своего персонажа!
-            </p>
+      <div className="max-laptop:hidden">
+        {!completed ? (
+          <div
+            className="max-w-[1160px] mt-[25px] h-full flex justify-between gap-[10px] mx-auto border-2 border-primary-dark rounded-[15px] 
+        max-desktop:max-w-[1010px] max-laptop:max-w-[630px] max-tablet:max-w-[460px]"
+          >
+            <div className="w-full">
+              <div className="py-[20px] text-center">
+                <h3 className="w-full font-bold">Создай своего персонажа</h3>
+              </div>
+              {isFormSubmitted ? <Result /> : <Form />}
+            </div>
+            <div className="w-full">
+              <BugList />
+              <div className="p-[20px]">
+                <ErrorBlock />
 
-            <div className="flex max-laptop:flex-col mt-5 gap-[10px]">
-              <div className="w-full laptop:hidden">
-                <FoundBugs />
-              </div>
-              <div className="w-1/2 min-h-full max-laptop:w-full max-laptop:mt-10">
-                <Form />
-              </div>
-              <div className="w-1/2 min-h-full max-laptop:w-full">
-                <Result />
+                {isFormSubmitted || isError ? (
+                  <div className="mt-[25px] flex justify-center">
+                    <button
+                      className="text-primary-bg mx-auto bg-secondary-dark py-2 px-5 rounded-[15px]"
+                      type="button"
+                      onClick={resetForm}
+                    >
+                      Попробовать ещё раз
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div
-          className="max-w-[1160px] mt-[25px] h-full mx-auto max-desktop:max-w-[1010px] max-laptop:max-w-[630px] max-tablet:max-w-[460px] py-[25px]
-        bg-primary-dark text-primary-bg rounded-[20px] flex flex-col gap-[20px]"
-        >
-          <h3
-            className={cn(
-              cormorant.className,
-              "uppercase text-center mt-[25px] text-[40px] max-desktop:text-[35px] max-laptop:text-[30px]",
-            )}
-          >
-            Поздравляю! Ты опробовал себя в роли тестировщика!
-          </h3>
+        ) : (
+          <CompletedForm />
+        )}
+      </div>
 
-          <Link
-            className="py-[10px] px-[25px] w-fit mx-auto bg-primary-bg text-primary-dark rounded-[15px]"
-            href="#application"
-          >
-            Перейти к заявке
-          </Link>
-
-          <button
-            className="py-[10px] px-[25px] w-fit mx-auto bg-primary-dark text-primary-bg rounded-[15px] border-2 border-primary-bg"
-            type="button"
-            onClick={resetForm}
-          >
-            Попробовать ещё раз
-          </button>
-        </div>
-      )}
+      <div className="laptop:hidden mt-[25px] w-full">
+        <p className="text-center font-bold">
+          Чтобы протестировать форму создания персонажа, перейди на десктоп версию
+        </p>
+      </div>
     </div>
   );
 };

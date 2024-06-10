@@ -30,4 +30,10 @@ export const bugs: Bug[] = [
   { name: "checkbox", triggered: false },
 ];
 
-export const initialCharacter: Character = {};
+export const initialCharacter: Character = {
+  gender: "male",
+  hairColor: "bald",
+  cloth: "home",
+  superpower: "",
+  characteristic: "",
+};

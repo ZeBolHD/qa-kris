@@ -2,32 +2,28 @@ import { useContext } from "react";
 import { TrainingFormContext } from "../TrainingFormProvider";
 import Image from "next/image";
 
-const CharacterImage = () => {
+const Character = () => {
   const { character } = useContext(TrainingFormContext);
 
   const src = `/characters/${character.gender}-${character.hairColor}-${character.cloth}.png`;
 
-  if (!character.cloth || !character.gender || !character.hairColor) {
-    return <p className="text-[20px] max-laptop:mt-5">Создайте своего персонажа</p>;
-  }
-
   return (
-    <div className="w-full font-light">
+    <div className="w-full font-normal p-[20px]">
       <Image
-        className="mx-auto w-[325px] h-[325px] object-cover"
+        className="mx-auto w-[250px] h-[250px] object-cover"
         src={src}
         alt="character"
         width={500}
         height={500}
       />
-      <p className="mt-5">
+      <p className="mt-[10px]">
         Суперспособность: {character.superpower ? character.superpower : "unknown"}
       </p>
-      <p className="mt-3">
+      <p className="mt-[10px]">
         Характеристика: {character.characteristic ? character.characteristic : "unknown"}
       </p>
     </div>
   );
 };
 
-export default CharacterImage;
+export default Character;

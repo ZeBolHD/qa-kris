@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Bug } from "../types";
 
 interface BugCheckboxProps extends Bug {
@@ -16,17 +17,17 @@ const BugCheckbox = ({ name, triggered, index, onClick }: BugCheckboxProps) => {
   }, [triggered]);
 
   return (
-    <div className="flex gap-2">
-      <label htmlFor={name}>Ошибка {index + 1}</label>
+    <li className="flex gap-2">
+      <label htmlFor={name}>Баг {index + 1}</label>
       <input
         type="checkbox"
         id={name}
         key={name}
         checked={checked}
-        onClick={() => (name === "checkbox" ? onClick?.() : null)}
+        onClick={onClick}
         onChange={() => setIsChecked((prev) => !prev)}
       />
-    </div>
+    </li>
   );
 };
 

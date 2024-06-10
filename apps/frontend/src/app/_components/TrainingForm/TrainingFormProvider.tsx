@@ -7,20 +7,22 @@ import { bugs, initialCharacter } from "./consts";
 interface TrainingFormContextProps {
   isError: boolean;
   errorText: string;
-  resetError: () => void;
+  resetBugs: () => void;
   foundBugs: Bug[];
   character: Character;
   setCharacter: (character: Character) => void;
   triggerBug: (name: BugName) => void;
   completed: boolean;
   resetForm: () => void;
+  isFormSubmitted: boolean;
 }
 
 const initialState: TrainingFormContextProps = {
   isError: false,
   errorText: "",
-  resetError: () => {},
+  resetBugs: () => {},
   foundBugs: bugs,
+  isFormSubmitted: false,
   character: initialCharacter,
   setCharacter: () => {},
   triggerBug: () => {},
@@ -40,19 +42,23 @@ const TrainingFormProvider = ({ children }: TrainingFormProviderProps) => {
   const [foundBugs, setFoundBugs] = useState(bugs);
   const [character, setCharacter] = useState(initialCharacter);
   const [completed, setCompleted] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const resetForm = () => {
     setCharacter(initialCharacter);
+    setIsFormSubmitted(false);
+    setIsError(false);
+  };
+
+  const resetBugs = () => {
+    setCharacter(initialCharacter);
     setFoundBugs(bugs);
     setCompleted(false);
+    setIsFormSubmitted(false);
+    setErrorText("");
 
     sessionStorage.setItem("foundBugs", JSON.stringify(bugs));
     sessionStorage.setItem("completed", JSON.stringify(false));
-  };
-
-  const resetError = () => {
-    setIsError(false);
-    setErrorText("");
   };
 
   const checkIsCompleted = () => {
@@ -69,38 +75,45 @@ const TrainingFormProvider = ({ children }: TrainingFormProviderProps) => {
     );
 
     setFoundBugs(newFoundBugs);
-
     sessionStorage.setItem("foundBugs", JSON.stringify(newFoundBugs));
   };
 
   const setNewCharacter = ({ gender, cloth, hairColor, superpower, characteristic }: Character) => {
+    let isError = false;
+    setIsFormSubmitted(true);
+
     switch (true) {
       case !gender:
         triggerBug("emptyGender");
         setIsError(true);
+        isError = true;
         setErrorText("Если не выбирать пол персонажа происходит сбой");
         break;
 
       case !cloth || !hairColor || !gender:
         triggerBug("notRequiredFields");
         setIsError(true);
+        isError = true;
         setErrorText("Если не заполнять все обязательные поля происходит сбой");
         break;
 
       case superpower !== superpower?.trim() || characteristic !== characteristic?.trim():
         triggerBug("emptyInput");
         setIsError(true);
+        isError = true;
         setErrorText("Если заполнить пробелами текстовые поля происходит сбой");
         break;
 
       case (superpower && superpower.length > 20) || (characteristic && characteristic.length > 20):
         triggerBug("minValue");
         setIsError(true);
+        isError = true;
         setErrorText("Если написать больше 20 символов в текстовые поля, то произойдет сбой");
         break;
     }
 
     if (!isError) {
+      setIsFormSubmitted(true);
       setCharacter({ gender, cloth, hairColor, superpower, characteristic });
     }
   };
@@ -128,11 +141,12 @@ const TrainingFormProvider = ({ children }: TrainingFormProviderProps) => {
         foundBugs,
         isError,
         errorText,
-        resetError,
+        resetBugs,
         character,
         triggerBug,
         completed,
         resetForm,
+        isFormSubmitted,
         setCharacter: setNewCharacter,
       }}
     >
