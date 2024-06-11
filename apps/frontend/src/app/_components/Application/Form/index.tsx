@@ -168,7 +168,7 @@ const Form = ({ serviceNames }: FormProps) => {
           )}
         </div>
         <p
-          className="mt-[50px] text-center text-[20px] leading-[120%] text-secondary-light 
+          className="mt-[50px] text-center text-[20px] leading-[120%] text-bg-primary 
         max-desktop:text-[17px] max-desktop:mt-[25px] max-laptop:text-[12px]"
         >
           Нажимая на кнопку, вы соглашаетесь с условиями обработки{" "}

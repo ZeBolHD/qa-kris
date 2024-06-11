@@ -25,7 +25,7 @@ const BugCheckbox = ({ name, triggered, index, onClick }: BugCheckboxProps) => {
         key={name}
         checked={checked}
         onClick={onClick}
-        onChange={() => setIsChecked((prev) => !prev)}
+        onChange={() => setIsChecked((prev) => (name === "checkbox" ? !prev : prev))}
       />
     </li>
   );
