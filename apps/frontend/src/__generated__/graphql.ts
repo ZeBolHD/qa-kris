@@ -134,12 +134,12 @@ export type ComponentHomePageProgramAndTools = {
   __typename?: 'ComponentHomePageProgramAndTools';
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
-  tools?: Maybe<ToolRelationResponseCollection>;
+  programs?: Maybe<ProgramRelationResponseCollection>;
 };
 
 
-export type ComponentHomePageProgramAndToolsToolsArgs = {
-  filters?: InputMaybe<ToolFiltersInput>;
+export type ComponentHomePageProgramAndToolsProgramsArgs = {
+  filters?: InputMaybe<ProgramFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -150,13 +150,13 @@ export type ComponentHomePageProgramAndToolsFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentHomePageProgramAndToolsFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentHomePageProgramAndToolsFiltersInput>>>;
-  tools?: InputMaybe<ToolFiltersInput>;
+  programs?: InputMaybe<ProgramFiltersInput>;
 };
 
 export type ComponentHomePageProgramAndToolsInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
-  tools?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  programs?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
 export type DateTimeFilterInput = {
@@ -222,13 +222,20 @@ export type HomePage = {
   about_me: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   hero?: Maybe<ComponentHomePageHero>;
+  program_categories: Array<Maybe<ComponentHomePageProgramAndTools>>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   questions?: Maybe<QuestionRelationResponseCollection>;
   requisites_number: Scalars['String']['output'];
   reviews?: Maybe<ReviewRelationResponseCollection>;
   services?: Maybe<ServiceRelationResponseCollection>;
-  tool_categories: Array<Maybe<ComponentHomePageProgramAndTools>>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type HomePageProgram_CategoriesArgs = {
+  filters?: InputMaybe<ComponentHomePageProgramAndToolsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -255,13 +262,6 @@ export type HomePageServicesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-
-export type HomePageTool_CategoriesArgs = {
-  filters?: InputMaybe<ComponentHomePageProgramAndToolsFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
 export type HomePageEntity = {
   __typename?: 'HomePageEntity';
   attributes?: Maybe<HomePage>;
@@ -276,12 +276,12 @@ export type HomePageEntityResponse = {
 export type HomePageInput = {
   about_me?: InputMaybe<Scalars['String']['input']>;
   hero?: InputMaybe<ComponentHomePageHeroInput>;
+  program_categories?: InputMaybe<Array<InputMaybe<ComponentHomePageProgramAndToolsInput>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   questions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   requisites_number?: InputMaybe<Scalars['String']['input']>;
   reviews?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   services?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  tool_categories?: InputMaybe<Array<InputMaybe<ComponentHomePageProgramAndToolsInput>>>;
 };
 
 export type I18NLocale = {
@@ -766,6 +766,11 @@ export type ProgramInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export type ProgramRelationResponseCollection = {
+  __typename?: 'ProgramRelationResponseCollection';
+  data: Array<ProgramEntity>;
+};
+
 export enum PublicationState {
   Live = 'LIVE',
   Preview = 'PREVIEW'
@@ -950,7 +955,7 @@ export type QueryUsersPermissionsUsersArgs = {
 
 export type Question = {
   __typename?: 'Question';
-  answer: Scalars['String']['output'];
+  answer?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1134,7 +1139,7 @@ export type StringFilterInput = {
 export type Tool = {
   __typename?: 'Tool';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  name: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -1170,11 +1175,6 @@ export type ToolFiltersInput = {
 export type ToolInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type ToolRelationResponseCollection = {
-  __typename?: 'ToolRelationResponseCollection';
-  data: Array<ToolEntity>;
 };
 
 export type UploadFile = {
@@ -1563,7 +1563,7 @@ export type Get_Home_Page_HeroQuery = { __typename?: 'Query', homePage?: { __typ
 export type Get_Home_Page_QuestionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get_Home_Page_QuestionsQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', questions?: { __typename?: 'QuestionRelationResponseCollection', data: Array<{ __typename?: 'QuestionEntity', attributes?: { __typename?: 'Question', name: string, answer: string } | null }> } | null } | null } | null } | null };
+export type Get_Home_Page_QuestionsQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', questions?: { __typename?: 'QuestionRelationResponseCollection', data: Array<{ __typename?: 'QuestionEntity', attributes?: { __typename?: 'Question', name: string, answer?: string | null } | null }> } | null } | null } | null } | null };
 
 export type Get_Home_Page_Hero_Requisites_NumberQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1588,7 +1588,7 @@ export type Get_Privacy_Page_TextQuery = { __typename?: 'Query', privacyPage?: {
 export type Get_Home_Page_Tool_CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get_Home_Page_Tool_CategoriesQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', tool_categories: Array<{ __typename?: 'ComponentHomePageProgramAndTools', name?: string | null, tools?: { __typename?: 'ToolRelationResponseCollection', data: Array<{ __typename?: 'ToolEntity', attributes?: { __typename?: 'Tool', name: string } | null }> } | null } | null> } | null } | null } | null };
+export type Get_Home_Page_Tool_CategoriesQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename?: 'HomePage', program_categories: Array<{ __typename?: 'ComponentHomePageProgramAndTools', name?: string | null, programs?: { __typename?: 'ProgramRelationResponseCollection', data: Array<{ __typename?: 'ProgramEntity', attributes?: { __typename?: 'Program', name: string } | null }> } | null } | null> } | null } | null } | null };
 
 export type Send_ApplicationMutationVariables = Exact<{
   name: Scalars['String']['input'];
@@ -1613,5 +1613,5 @@ export const Get_Home_Page_Hero_Requisites_NumberDocument = {"kind":"Document","
 export const Get_Home_Page_ReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_REVIEWS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reviews"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ReviewsQuery, Get_Home_Page_ReviewsQueryVariables>;
 export const Get_Home_Page_ServicesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_SERVICES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"time"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_ServicesQuery, Get_Home_Page_ServicesQueryVariables>;
 export const Get_Privacy_Page_TextDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_PRIVACY_PAGE_TEXT"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"privacyPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Privacy_Page_TextQuery, Get_Privacy_Page_TextQueryVariables>;
-export const Get_Home_Page_Tool_CategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_TOOL_CATEGORIES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tool_categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"tools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Tool_CategoriesQuery, Get_Home_Page_Tool_CategoriesQueryVariables>;
+export const Get_Home_Page_Tool_CategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_HOME_PAGE_TOOL_CATEGORIES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"program_categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"programs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_Home_Page_Tool_CategoriesQuery, Get_Home_Page_Tool_CategoriesQueryVariables>;
 export const Send_ApplicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SEND_APPLICATION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"service"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"age"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"study_start"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"work"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"experience"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"comment"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createApplication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"telegram"},"value":{"kind":"Variable","name":{"kind":"Name","value":"telegram"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"service"},"value":{"kind":"Variable","name":{"kind":"Name","value":"service"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"age"},"value":{"kind":"Variable","name":{"kind":"Name","value":"age"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"study_start"},"value":{"kind":"Variable","name":{"kind":"Name","value":"study_start"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"work"},"value":{"kind":"Variable","name":{"kind":"Name","value":"work"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"experience"},"value":{"kind":"Variable","name":{"kind":"Name","value":"experience"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"comment"},"value":{"kind":"Variable","name":{"kind":"Name","value":"comment"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<Send_ApplicationMutation, Send_ApplicationMutationVariables>;

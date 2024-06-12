@@ -1,14 +1,14 @@
 import { gql } from "@/__generated__/gql";
 import apolloClient from "../apollo-client";
 
-const GET_HOME_PAGE_TOOL_CATEGORIES = gql(/* GraphQL */ `
+const GET_HOME_PAGE_PROGRAM_CATEGORIES = gql(/* GraphQL */ `
   query GET_HOME_PAGE_TOOL_CATEGORIES {
     homePage {
       data {
         attributes {
-          tool_categories {
+          program_categories {
             name
-            tools {
+            programs {
               data {
                 attributes {
                   name
@@ -22,9 +22,9 @@ const GET_HOME_PAGE_TOOL_CATEGORIES = gql(/* GraphQL */ `
   }
 `);
 
-export const getHomePageToolCategories = async () => {
+export const getHomePageProgramCategories = async () => {
   const { data } = await apolloClient.query({
-    query: GET_HOME_PAGE_TOOL_CATEGORIES,
+    query: GET_HOME_PAGE_PROGRAM_CATEGORIES,
     fetchPolicy: "no-cache",
   });
 

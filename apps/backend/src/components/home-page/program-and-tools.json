@@ -1,16 +1,16 @@
 {
   "collectionName": "components_home_page_program_and_tools",
   "info": {
-    "displayName": "Tool Categories",
+    "displayName": "Program Categories",
     "icon": "grid",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "tools": {
+    "programs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::tool.tool"
+      "target": "api::program.program"
     },
     "name": {
       "type": "string"

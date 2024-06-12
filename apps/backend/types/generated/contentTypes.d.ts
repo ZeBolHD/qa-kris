@@ -703,15 +703,6 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
   attributes: {
     hero: Attribute.Component<"home-page.hero">;
-    tool_categories: Attribute.Component<"home-page.program-and-tools", true> &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 2;
-          max: 2;
-        },
-        number
-      >;
     services: Attribute.Relation<"api::home-page.home-page", "oneToMany", "api::service.service">;
     questions: Attribute.Relation<
       "api::home-page.home-page",
@@ -721,6 +712,15 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     about_me: Attribute.RichText & Attribute.Required;
     requisites_number: Attribute.String & Attribute.Required;
     reviews: Attribute.Relation<"api::home-page.home-page", "oneToMany", "api::review.review">;
+    program_categories: Attribute.Component<"home-page.program-and-tools", true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 2;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

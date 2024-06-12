@@ -17,14 +17,6 @@
       "repeatable": false,
       "component": "home-page.hero"
     },
-    "tool_categories": {
-      "type": "component",
-      "repeatable": true,
-      "component": "home-page.program-and-tools",
-      "max": 2,
-      "min": 2,
-      "required": true
-    },
     "services": {
       "type": "relation",
       "relation": "oneToMany",
@@ -47,6 +39,14 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::review.review"
+    },
+    "program_categories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home-page.program-and-tools",
+      "required": true,
+      "max": 2,
+      "min": 2
     }
   }
 }
