@@ -56,6 +56,7 @@ const TrainingFormProvider = ({ children }: TrainingFormProviderProps) => {
     setCompleted(false);
     setIsFormSubmitted(false);
     setErrorText("");
+    setIsError(false);
 
     sessionStorage.setItem("foundBugs", JSON.stringify(bugs));
     sessionStorage.setItem("completed", JSON.stringify(false));
